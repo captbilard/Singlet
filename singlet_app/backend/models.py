@@ -9,7 +9,7 @@ class Profile(models.Model):
     ('Male', 'Male'),
     ('Female', 'Female')
 ]
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='profiles')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profiles')
     age = models.IntegerField()
     sex = models.CharField(max_length=7, choices=sex)
     profile_pics = models.ImageField(upload_to='profile_pics/%Y/%m/%d', max_length=255, blank=True, null=True)#you need to check more on this field
@@ -24,7 +24,7 @@ class Profile(models.Model):
         return f'{self.user}'
 
 class Gallery(models.Model):
-    # user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='galleries')
+    #user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='galleries')
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="galleries", null=True, blank=True)
     pictures = models.ImageField(upload_to="gallery/%Y/%m/%d", max_length=200, blank=True, null=True)
     uploaded_at = models.DateTimeField(auto_now=True)
