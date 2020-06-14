@@ -13,7 +13,7 @@ from .serializers import *
 
 # Create your views here.
 def index(request):
-    return HttpResponse("<p>It worked</p>")
+    return render(request, "singlet/index.html")
 
 # class AdminUsersView(viewsets.ModelViewSet):
 #     """ API endpoint to perform CRUD operation as well as list all the users"""
